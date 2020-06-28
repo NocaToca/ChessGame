@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=Queen
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Queen\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=c\ startTile\ teams
+comment1.target=Queen(objectdraw.DrawingCanvas,\ Tiles,\ int)
+comment2.params=startTile\ teams
+comment2.target=Queen(Tiles,\ int)
+comment3.params=
+comment3.target=void\ selectPiece()
+comment4.params=
+comment4.target=java.util.ArrayList\ tilesCanMove()
+comment5.params=depth
+comment5.target=java.util.ArrayList\ tilesCanMove(int)
+numComments=6

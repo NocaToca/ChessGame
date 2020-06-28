@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.target=Tiles
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Tiles\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=xk\ yk\ c\ color\ cboard
+comment1.target=Tiles(int,\ int,\ objectdraw.DrawingCanvas,\ int,\ Board)
+comment2.params=xk\ yk\ cboard
+comment2.target=Tiles(int,\ int,\ Board)
+comment3.params=p
+comment3.target=boolean\ contains(objectdraw.Location)
+comment4.params=
+comment4.target=void\ highlight()
+comment5.params=
+comment5.target=void\ unHighlight()
+comment6.params=compare
+comment6.target=boolean\ equals(Tiles)
+comment7.params=pseudoX\ pseudoY\ depth
+comment7.target=boolean\ isPiece(int,\ int,\ int)
+comment8.params=pseudoX\ pseudoY\ depth\ team
+comment8.target=boolean\ team(int,\ int,\ int,\ int)
+numComments=9

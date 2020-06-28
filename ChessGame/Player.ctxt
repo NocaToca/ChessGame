@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=Player
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Player\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=teams
+comment1.target=Player(int)
+comment2.params=
+comment2.target=void\ initializePieces()
+comment3.params=
+comment3.target=void\ findLoc()
+comment4.params=newGame
+comment4.target=void\ findLoc(Game)
+numComments=5

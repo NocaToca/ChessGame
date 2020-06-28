@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=Pawn
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Pawn\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=c\ startTile\ teams
+comment1.target=Pawn(objectdraw.DrawingCanvas,\ Tiles,\ int)
+comment2.params=startTile\ teams
+comment2.target=Pawn(Tiles,\ int)
+comment3.params=
+comment3.target=void\ selectPiece()
+comment4.params=tile
+comment4.target=void\ movePiece(Tiles)
+comment5.params=
+comment5.target=java.util.ArrayList\ tilesCanMove()
+comment6.params=useless
+comment6.target=java.util.ArrayList\ tilesCanMove(int)
+numComments=7

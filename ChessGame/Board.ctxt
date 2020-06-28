@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.target=Board
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Board\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=c
+comment1.target=Board(objectdraw.DrawingCanvas)
+comment2.params=
+comment2.target=Board()
+comment3.params=
+comment3.target=void\ initializeMockBoard()
+comment4.params=
+comment4.target=void\ initializeBoard()
+comment5.params=p
+comment5.target=Tiles\ contains(objectdraw.Location)
+comment6.params=xk\ yk
+comment6.target=void\ highlight(int,\ int)
+comment7.params=xk\ yk
+comment7.target=void\ unHighlight(int,\ int)
+comment8.params=
+comment8.target=void\ unHighlightAll()
+comment9.params=
+comment9.target=Board\ copy()
+numComments=10
