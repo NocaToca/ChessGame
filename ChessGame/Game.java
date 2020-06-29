@@ -97,6 +97,7 @@ public class Game
         }
 
     }
+
     public void updateMove(Player player){
         update(player, 0);
 
@@ -145,14 +146,14 @@ public class Game
 
         }
 
-        System.out.println(assessingTiles.size());
+        //System.out.println(assessingTiles.size());
         for(int i = 0; i < assessingTiles.size(); i++){
 
             //Tiles tempfg = assessingTiles.get(i);
             //assessingTiles.get(i).highlight();
             if(assessingTiles.get(i) == player.king.ontopofTile){
 
-                System.out.println("Check!");
+                //System.out.println("Check!");
                 return true;
 
             }
@@ -192,11 +193,11 @@ public class Game
 
         }
 
-        System.out.println("Other team: " + temp.team);
-        System.out.println("Your team: " + player.team);
+        //System.out.println("Other team: " + temp.team);
+        //System.out.println("Your team: " + player.team);
         for(int i = 0; i < temp.pieces.length; i++){
 
-            System.out.println(temp.pieces[i].isDead);
+            //System.out.println(temp.pieces[i].isDead);
             if(!temp.pieces[i].isDead){
 
                 tempTiles = temp.pieces[i].tilesCanMove();
@@ -221,7 +222,7 @@ public class Game
             //assessingTiles.get(i).highlight();
             if(assessingTiles.get(i) == player.king.ontopofTile){
 
-                System.out.println("Check!");
+                //System.out.println("Check!");
                 selectedPiece.movePiece(tempTile);
                 if(selectedTile.isPiece){
 
@@ -242,7 +243,6 @@ public class Game
 
         selectedPiece.ontopofTile.pieceOn = null;
 
-        
         selectedPiece.ontopofTile.isPiece = false;
         selectedPiece.ontopofTile = tempTile;
         selectedTile.pieceOn = tempPiece;
@@ -288,7 +288,7 @@ public class Game
         ArrayList<Tiles> tempTiles = new ArrayList<Tiles>();
 
         for(int i = 0; i < enemyUnits.length; i++){
-            
+
             if(!enemyUnits[i].isDead){
 
                 tempTiles = enemyUnits[i].tilesCanMove();
@@ -350,7 +350,7 @@ public class Game
                 }
 
             }
-        
+
         }
 
         //System.out.println("Check mate!");
@@ -360,11 +360,8 @@ public class Game
 
         return true;
 
-
     }
-
     public ArrayList<Tiles> editTiles(ArrayList<Tiles> currentTiles, Pieces pieceRemove, Player playerPieceBelongsTo){
-
         ArrayList<Tiles> newList = new ArrayList<Tiles>();
         ArrayList<Tiles> tempTiles = new ArrayList<Tiles>();
         int ignoreIndex = 0;
@@ -434,12 +431,11 @@ public class Game
 
         Board fakeBoard = board.copy();
 
-       
 
         return fakeBoard;
     }
-    
-    public boolean checkMate(ArrayList<Integer> ignoreIndexPlayer, ArrayList<Integer> ignoreIndexEnemy, Player player){
+
+    public boolean checkMate(ArrayList<Integer> ignoreIndexPlayer, ArrayList<Integer> ignoreIndexEnemy, Player player, int depth){
 
         King kindInCheck = player.king;
         Player otherPlayer;
@@ -463,7 +459,7 @@ public class Game
         ArrayList<Tiles> tempTiles = new ArrayList<Tiles>();
 
         for(int i = 0; i < enemyUnits.length; i++){
-            
+
             if(!enemyUnits[i].isDead && !ignoreIndexEnemy.contains(i)){
 
                 tempTiles = enemyUnits[i].tilesCanMove();
@@ -486,16 +482,16 @@ public class Game
                 tempTiles = yourUnits[i].tilesCanMove();
                 for(int k = 0; k < tempTiles.size(); k++){
 
-                    if(tempTiles.get(k).isPiece && tempTiles.get(k).pieceOn.team != player.team){
+                    if(tempTiles.get(k).isPiece(tempTiles.get(k).x, tempTiles.get(k).y, depth-1) && tempTiles.get(k).team(tempTiles.get(k).x, tempTiles.get(k).y, depth-1, player.team)){
 
-                        ArrayList<Tiles> checkingTiles = editTiles(tilesTheEnemyCanMove, tempTiles.get(k).pieceOn, otherPlayer, ignoreIndexPlayer, ignoreIndexEnemy);
+                        ArrayList<Tiles> checkingTiles = editTiles(tilesTheEnemyCanMove, tempTiles.get(k).pieceOn, otherPlayer, ignoreIndexPlayer, ignoreIndexEnemy, depth);
                         for(int g = 0; g < checkingTiles.size(); g++){
 
-                            if(checkingTiles.get(g).pieceOn != player.king && g == checkingTiles.size()-1){
+                            if(checkingTiles.get(g).pieceOn(checkingTiles.get(g), depth-1) != player.king && g == checkingTiles.size()-1){
 
                                 return false;
 
-                            } else if(checkingTiles.get(g).pieceOn == player.king){
+                            } else if(checkingTiles.get(g).pieceOn(checkingTiles.get(g), depth-1) == player.king){
 
                                 break;
 
@@ -503,16 +499,16 @@ public class Game
 
                         }
 
-                    } else if(!tempTiles.get(k).isPiece){
+                    } else if(!tempTiles.get(k).isPiece(tempTiles.get(k).x, tempTiles.get(k).y, depth-1)){
 
-                        ArrayList<Tiles> checkingTiles = editTiles(yourUnits[i], tilesTheEnemyCanMove, otherPlayer, tempTiles.get(k), ignoreIndexPlayer, ignoreIndexEnemy);
+                        ArrayList<Tiles> checkingTiles = editTiles(yourUnits[i], tilesTheEnemyCanMove, otherPlayer, tempTiles.get(k), ignoreIndexPlayer, ignoreIndexEnemy, depth);
                         for(int g = 0; g < checkingTiles.size(); g++){
 
-                            if(checkingTiles.get(g).pieceOn != player.king && g == checkingTiles.size()-1){
+                            if(checkingTiles.get(g).pieceOn(checkingTiles.get(g), depth-1) != player.king && g == checkingTiles.size()-1){
 
                                 return false;
 
-                            } else if(checkingTiles.get(g).pieceOn == player.king){
+                            } else if(checkingTiles.get(g).pieceOn(checkingTiles.get(g), depth-1) == player.king){
 
                                 break;
 
@@ -525,18 +521,14 @@ public class Game
                 }
 
             }
-        
+
         }
 
-       
 
         return true;
 
-
     }
-
-    public ArrayList<Tiles> editTiles(ArrayList<Tiles> currentTiles, Pieces pieceRemove, Player playerPieceBelongsTo, ArrayList<Integer> ignoreIndexPlayer, ArrayList<Integer> ignoreIndexEnemy){
-
+    public ArrayList<Tiles> editTiles(ArrayList<Tiles> currentTiles, Pieces pieceRemove, Player playerPieceBelongsTo, ArrayList<Integer> ignoreIndexPlayer, ArrayList<Integer> ignoreIndexEnemy, int depth){
         ArrayList<Tiles> newList = new ArrayList<Tiles>();
         ArrayList<Tiles> tempTiles = new ArrayList<Tiles>();
         int ignoreIndex = 0;
@@ -554,7 +546,7 @@ public class Game
 
             if(!playerPieceBelongsTo.pieces[i].isDead && !ignoreIndexEnemy.contains(i)){
 
-                tempTiles = playerPieceBelongsTo.pieces[i].tilesCanMove();
+                tempTiles = playerPieceBelongsTo.pieces[i].tilesCanMove(depth-1);
                 for(int k = 0; k < tempTiles.size(); k++){
 
                     if(!newList.contains(tempTiles.get(k))){
@@ -573,17 +565,23 @@ public class Game
 
     }
 
-    public ArrayList<Tiles> editTiles(Pieces movedPiece, ArrayList<Tiles> currentTiles, Player otherPlayer, Tiles tileToMoveTo, ArrayList<Integer> ignoreIndexPlayer, ArrayList<Integer> ignoreIndexEnemy){
+    public ArrayList<Tiles> editTiles(Pieces movedPiece, ArrayList<Tiles> currentTiles, Player otherPlayer, Tiles tileToMoveTo, ArrayList<Integer> ignoreIndexPlayer, ArrayList<Integer> ignoreIndexEnemy, int depth){
 
         Tiles tempTile = movedPiece.ontopofTile;
-        movedPiece.mockMove(tileToMoveTo);
+        //movedPiece.mockMove(tileToMoveTo);
+        int tempX = movedPiece.pseudoXList.get(depth);
+        int tempY = movedPiece.pseudoYList.get(depth);
+        
+        movedPiece.pseudoXList.set(depth, tileToMoveTo.x);
+        movedPiece.pseudoYList.set(depth, tileToMoveTo.y);
+        
         ArrayList<Tiles> newList = new ArrayList<Tiles>();
         ArrayList<Tiles> tempTiles = new ArrayList<Tiles>();
         for(int i = 0; i < otherPlayer.pieces.length; i++){
 
             if(!otherPlayer.pieces[i].isDead && !ignoreIndexEnemy.contains(i)){
 
-                tempTiles = otherPlayer.pieces[i].tilesCanMove();
+                tempTiles = otherPlayer.pieces[i].tilesCanMove(depth-1);
                 for(int k = 0; k < tempTiles.size(); k++){
 
                     if(!newList.contains(tempTiles.get(k))){
@@ -597,27 +595,42 @@ public class Game
             }
 
         }
-        movedPiece.mockMove(tempTile);
+        //movedPiece.mockMove(tempTile);
+        movedPiece.pseudoXList.set(depth, tempX);
+        movedPiece.pseudoYList.set(depth, tempY);
         return newList;
 
     }
-    
+
     public void moveAI(){
-    
+
+        if(playerOne.isAnAI){
+        
+        playerOne.findLoc(this);
+        updateMove(playerOne);
+        }
+        if(playerTwo.isAnAI){
+        
         playerTwo.findLoc(this);
         updateMove(playerTwo);
-    
-    }
-    
-    public boolean checkMate(ArrayList<Integer> ignoreIndexPlayer, ArrayList<Integer> ignoreIndexEnemy){
-    
-        if(checkMate(ignoreIndexPlayer, ignoreIndexEnemy, playerTwo) || checkMate(ignoreIndexEnemy, ignoreIndexPlayer, playerOne)){
+        }
+        if(playerTwo.isAnAI && playerOne.isAnAI){
         
-            return true;
+            moveAI();
         
         }
+
+    }
+
+    public boolean checkMate(ArrayList<Integer> ignoreIndexPlayer, ArrayList<Integer> ignoreIndexEnemy, int depth){
+
+        if(checkMate(ignoreIndexPlayer, ignoreIndexEnemy, playerTwo, depth) || checkMate(ignoreIndexEnemy, ignoreIndexPlayer, playerOne, depth)){
+
+            return true;
+
+        }
         return false;
-    
+
     }
 
 }

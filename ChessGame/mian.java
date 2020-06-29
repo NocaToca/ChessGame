@@ -29,6 +29,11 @@ public class mian extends WindowController
         chessBoard.initializeBoard();
 
         gameMode = new Game(p1, p2, chessBoard);
+        if(p1.isAnAI){
+        
+            gameMode.moveAI();
+        
+        }
 
         //FilledRect Jacen = new FilledRect(0, 0, canvas.getWidth()/8.0, canvas.getHeight()/8.0, canvas);
 

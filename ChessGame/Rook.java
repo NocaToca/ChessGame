@@ -12,6 +12,7 @@ import objectdraw.*;
 public class Rook extends Pieces
 {
     Image body;
+    boolean ableToCastle = true;
     static Toolkit kit = Toolkit.getDefaultToolkit();
     public Rook(DrawingCanvas c, Tiles startTile, int teams){
     

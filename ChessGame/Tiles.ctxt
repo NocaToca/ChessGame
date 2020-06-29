@@ -17,4 +17,6 @@ comment7.params=pseudoX\ pseudoY\ depth
 comment7.target=boolean\ isPiece(int,\ int,\ int)
 comment8.params=pseudoX\ pseudoY\ depth\ team
 comment8.target=boolean\ team(int,\ int,\ int,\ int)
-numComments=9
+comment9.params=tile\ depth
+comment9.target=Pieces\ pieceOn(Tiles,\ int)
+numComments=10

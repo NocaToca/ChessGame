@@ -125,7 +125,7 @@ public class Tiles
                 
                     if(chessBoard.boardTiles[i][k].pieceOn.team == team){
                     
-                        return true;
+                        return false;
                     
                     }
                 
@@ -134,6 +134,29 @@ public class Tiles
                 
             }
         }
-        return false;
+        return true;
+    }
+    
+    public Pieces pieceOn(Tiles tile, int depth){
+    
+        int pseudoX = tile.x;
+        int pseudoY = tile.y;
+        for(int i = 0; i < 8; i++){
+            for(int k = 0; k < 8; k++){
+                if(chessBoard.boardTiles[i][k].isPiece){
+                
+                    if(pseudoX == chessBoard.boardTiles[i][k].pieceOn.pseudoXList.get(depth) && pseudoY == chessBoard.boardTiles[i][k].pieceOn.pseudoYList.get(depth)){
+                    
+                        
+                        return chessBoard.boardTiles[i][k].pieceOn;
+                        
+                        
+                    }
+                }
+            }
+        }
+        //System.out.println("WARNING, NO PIECES DETECTED ON TILE. MAKE SURE TO RUN isPiece FIRST");
+        return null;
+    
     }
 }
